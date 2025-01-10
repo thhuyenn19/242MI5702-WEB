@@ -1,0 +1,167 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #8e184f;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end; /* Căn nội dung về phía phải */
+    align-items: flex-start;
+    padding: 10px 20px;
+    border-bottom: 2px solid #deb213;
+    width: 100%;
+    box-sizing: border-box; /* Đảm bảo padding và border được tính trong kích thước tổng thể */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Đảm bảo header nằm trên cùng */
+  }
+  
+  .logo {
+    position: relative;
+    display: inline-block;
+    text-align: right; /* Căn chữ trong logo về bên phải */
+  }
+  
+  .logo h1 {
+    font-size: 32px;
+    margin: 0;
+    font-weight: normal;
+    color: #333;
+    padding-top: 20px; /* Thêm khoảng cách giữa ONLINE và SCRAPBOOKS */
+  }
+  
+  .logo .online-label {
+    position: absolute;
+    top: 0;
+    right: 0; /* Căn ONLINE về bên phải */
+    background-color: orange;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+/* Container */
+
+
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 62px; /* Khoảng cách giữa header và nội dung, bằng chiều cao của header */
+  }
+  
+  .sidebar {
+    width: 200px;
+    background: url('hinh/back.jpg') repeat; /* Sử dụng hình nền texture */
+    border-right: 2px solid #ccc;
+    padding: 10px;
+    position: fixed;
+    top: 77px; /* Bắt đầu ngay dưới header */
+    bottom: 0;
+    overflow-y: auto; /* Thêm thanh cuộn dọc nếu nội dung vượt quá chiều cao */
+    box-sizing: border-box; /* Đảm bảo padding và border được tính trong kích thước tổng thể */
+    z-index: 1; /* Đảm bảo sidebar nằm dưới header */
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 5px 0;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: blue;
+    font-size: 14px;
+  }
+  
+  .sidebar ul li::before {
+    content: "• ";
+    color: red;
+    font-size: 16px;
+  }
+  
+  .sidebar ul li a:hover {
+    text-decoration: underline;
+    color: darkblue;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px; /* Đảm bảo nội dung không bị che bởi sidebar */
+  }
+  
+  .content h2 {
+    color: orange;
+  }
+  
+
+.content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    
+}
+
+/* Article */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* Đảm bảo khoảng cách giữa các phần tử */
+  align-items: flex-start; /* Căn các phần tử theo đầu trên */
+  margin-bottom: 20px; /* Khoảng cách dưới cùng */
+}
+
+section {
+  flex: 2; /* Cho phép section chiếm 2 phần không gian */
+  margin-right: 20px; /* Khoảng cách giữa section và article */
+  font-size: 16px;
+  text-align: justify;
+}
+
+article {
+  flex: 1; /* Cho phép article chiếm 1 phần không gian */
+  color: rgb(153, 40, 102);
+  border: 2px solid #e6990a;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+article ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+article ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    color: #deb213;
+    padding: 10px 0;
+    border-top: 2px solid #deb213;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+}
