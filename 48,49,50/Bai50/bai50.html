@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Expense Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7f9;
+            margin: 20px;
+        }
+        .header img {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            flex: 0 0 25%;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table th, table td {
+            border: 2px solid #b0abab;
+            padding: 5px;
+            text-align: center;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline label {
+            margin-right: 10px;
+        }
+        .button-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button-group form {
+            display: inline-block;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            margin: 5px 5px 0 0;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button-group button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="DeLong.jpg" alt="DeLong Enterprises Logo">
+    </div>
+    <h2>Travel Expense Report</h2>
+    <form id="expenseForm" method="GET">
+        <div class="form-group">
+            <label for="firstName">1 First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <label for="lastName" style="margin-left: 10px;">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="ssn">2 Social Security Number:</label>
+            <input type="text" id="ssn" name="ssn" required>
+        </div>
+        <div class="form-group">
+            <label for="department">3 Department:</label>
+            <select id="department" name="department">
+                <option value="Accounting">Accounting</option>
+                <option value="HR">HR</option>
+                <option value="IT">IT</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="purpose">4 Describe the purpose of your trip:</label>
+            <textarea id="purpose" name="purpose" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <label>5 Itemize your travel expenses:</label>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="date" name="date1"></td>
+                        <td><input type="text" name="description1"></td>
+                        <td>
+                            <select name="category1">
+                                <option value="Meal">Meal</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Lodging">Lodging</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="amount1" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="date2"></td>
+                        <td><input type="text" name="description2"></td>
+                        <td>
+                            <select name="category2">
+                                <option value="Meal">Meal</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Lodging">Lodging</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="amount2" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="date3"></td>
+                        <td><input type="text" name="description3"></td>
+                        <td>
+                            <select name="category3">
+                                <option value="Meal">Meal</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Lodging">Lodging</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="amount3" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date" name="date4"></td>
+                        <td><input type="text" name="description4"></td>
+                        <td>
+                            <select name="category4">
+                                <option value="Meal">Meal</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Lodging">Lodging</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="amount4" step="0.01"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group form-inline">
+            <label>6 Have you submitted your receipts?</label>
+            <label><input type="radio" name="receipts" value="Yes"> Yes</label>
+            <label style="margin-left: 10px;"><input type="radio" name="receipts" value="No"> No</label>
+        </div>
+        <div class="button-group">
+            <form action="/submit" method="GET">
+                <button type="submit">Submit travel expenses</button>
+            </form>
+            <form action="/reset" method="DELETE">
+                <button type="submit">Reset</button>
+            </form>
+        </div>
+        <div class="footer">
+            Questions? Contact Debbie Larson in Accounting (ext. 2150).
+        </div>
+    </form>
+</body>
+</html>

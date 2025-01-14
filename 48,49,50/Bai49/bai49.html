@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classifieds Search Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            background: #e0fafd;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .form-group .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .form-group .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group input[type="radio"],
+        .form-group input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        .buttons img {
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+            width: 50px;
+        }
+
+        .buttons img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <form id="searchForm">
+        <h1>Online Classifieds Search Form</h1>
+        <hr/>
+        <div class="form-group">
+            <label>1&#41 Search for a classified in the following sections:</label>
+            <div class="option-group">
+                <div class="option">
+                    <input type="radio" name="section" value="Employment"> Employment
+                </div>
+                <div class="option">
+                    <input type="radio" name="section" value="For Sale" checked> For Sale
+                </div>
+                <div class="option">
+                    <input type="radio" name="section" value="Housing"> Housing
+                </div>
+                <div class="option">
+                    <input type="radio" name="section" value="Personal"> Personal
+                </div>
+                <div class="option">
+                    <input type="radio" name="section" value="Miscellaneous"> Miscellaneous
+                </div>
+                <div class="option">
+                    <input type="radio" name="section" value="All"> All of the above
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>2&#41 Search the following publications:</label>
+            <div class="option-group">
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Midwest Times"> Midwest Times
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Great Lakes Classifieds" checked> Great Lakes Classifieds
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Modern News"> Modern News
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Employment Today"> Employment Today
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Middleton Daily"> Middleton Daily
+                </div>
+                <div class="option">
+                    <input type="checkbox" name="publications" value="Cashtown Daily News"> Cashtown Daily News
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>3&#41 From:</label>
+            <input type="date" name="fromDate" required> to <input type="date" name="toDate" required>
+        </div>
+        <div class="form-group">
+            <label>4&#41 Enter a few keywords to describe the classified:</label>
+            <input type="text" name="keywords" required>
+        </div>
+        
+        <div class="buttons">
+            <img src="Search.gif" alt="Search" title="Search" onclick="performSearch()">
+            <a href="help.html">
+                <img src="Help.gif" alt="Help" title="Help">
+            </a>
+            <button type="reset" style="border: none; background: transparent; padding: 0;">
+                <img src="Cancel.gif" alt="Cancel" title="Cancel">
+            </button>
+        </div>
+    </form>
+
+    <div id="searchBar" style="display: none;">
+        <h3>Search Results</h3>
+        <div id="searchResults"></div>
+    </div>
+
+    <script>
+        function performSearch() {
+            const form = document.getElementById('searchForm');
+            const formData = new FormData(form);
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+
+            let summary = '<p><strong>Search Details:</strong></p>';
+            summary += '<p><strong>Section:</strong> ' + formData.get('section') + '</p>';
+
+            const publications = formData.getAll('publications');
+            summary += '<p><strong>Publications:</strong> ' + (publications.length > 0 ? publications.join(', ') : 'None') + '</p>';
+
+            summary += '<p><strong>Date Range:</strong> ' + (formData.get('fromDate') || 'N/A') + ' to ' + (formData.get('toDate') || 'N/A') + '</p>';
+            summary += '<p><strong>Keywords:</strong> ' + (formData.get('keywords') || 'None') + '</p>';
+
+            const searchBar = document.getElementById('searchBar');
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = summary;
+
+            searchBar.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
